@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head.ejs') %>
+<body id="heroSection" class="<% if(locals.login){ if(role == 'admin'){ %>logged-in<% } } %>">
+    <%- include('partials/admin_bar.ejs') %>
+	<%- include('partials/header.ejs') %>  
+	<section class="forbidden">
+          <span class="bg-opacity"></span>
+          <img src="https://images.pexels.com/photos/1021073/pexels-photo-1021073.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"/>
+          <h2>404</h2>
+          <span><p>The page you requested has either been moved, deleted or does not exist.</p> <a href="/">Return to homepage</a>
+     </section>
+
+	<!-- START FOOTER -->
+	<div class="rgb-line"><span class="l1"></span><span class="l2"></span><span class="l3"></span><span class="l4"></span><span class="l5"></span><span class="l6"></span></div>	
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->    
+
+</html>

@@ -1,0 +1,17 @@
+<% if (typeof errors != 'undefined') { %>
+    <% errors.forEach(function(error){ %>
+        <div class="cta-alert error-msg"><%= error.msg %></div>
+    <% }); %>
+<% } %>
+
+<% if(success_msg != '') { %>
+    <div class="cta-alert success-msg"><%= success_msg %></div>
+<% } %>
+
+<% if(error_msg != '') { %>
+    <div class="cta-alert error-msg"><%= error_msg %></div>
+<% } %>
+
+<% if(error != '') { %>
+    <div class="cta-alert error-msg"><%= error %></div>
+<% } %>

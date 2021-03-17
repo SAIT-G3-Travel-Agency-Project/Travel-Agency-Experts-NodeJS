@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<body id="heroSection" class="<% if(locals.login){ if(role == 'admin'){ %>logged-in<% } } %>">
+    <%- include('../partials/admin_bar.ejs') %>   
+	<%- include('../partials/header.ejs') %>
+	<ul id="cta-promotions">
+		<li class="cta cta-visible">
+			<h1>Let's Travel.</h1>
+			<h3>Affordable travel prices from across the world.</h3>
+			<div class="cta-opacity"></div>
+		</li>
+		<li class="cta">
+			<h1>Bora Bora.</h1>
+			<h3>Travel to French Polynesian Bora Bora for only $500/night.</h3>
+			<div class="cta-opacity"></div>
+		</li>		
+	</ul>
+	
+ 
+    <section class="travel-images" id="TravelList">    
+    <% destinations.forEach(destination => { %>
+        <div class="column-4">
+                <div class="image-container">
+                    <img height="150" width="100" src="<%= destination.coverImagePath %>">
+                    <% if (destination.colorSelector != null) { %>
+                    <span class="heading" style="color: <%= destination.colorSelector %>">
+                    <% } else { %>
+                    <span class="heading">
+                    <% } %>
+                    <%= destination.title %>
+                    </span>
+                </div>
+            <span class="description">
+                <p><%= destination.description %></p>
+                <% if(locals.login){ %>
+                    <% if(role == 'admin'){ %>
+                    <a class="edit-post" href="destinations/edit/<%= destination.id %>">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-edit fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                    <form class="delete-post" method="POST" action="/destinations/<%= destination.id %>?_method=DELETE">
+                        <button type="submit">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-remove fa-stack-1x fa-inverse"></i>
+                            </span>                        
+                        </button>
+                    </form>
+                    <% } %>
+                <% } %>
+
+                <a class="read-more" href="destinations/<%= destination.slug %>">Read more</a>            
+            </span>
+        </div>
+    <% }) %>
+    </section>
+		
+	<section class="plan-your-travel-journey">
+		<div class="column-12">
+			<h1><i class="fa fa-globe" aria-hidden="true"></i> Plan your travel journey</h1>
+			<h3>Choose from over 300+ locations</h3>
+		</div>
+		<div class="column-2">
+			<a href="contact" class="detailed-image" style="background:url('assets/images/contact.jpg')">
+				<span style="color:#11e4aa;">Contact</span>
+			</a>
+		</div>
+		<div class="column-2">
+			<a href="register" class="detailed-image"  style="background:url('assets/images/register.jpg')">
+				<span>Register</span>
+			</a>
+		</div>
+	</section>
+
+	<!-- START FOOTER -->
+	<div class="rgb-line"><span class="l1"></span><span class="l2"></span><span class="l3"></span><span class="l4"></span><span class="l5"></span><span class="l6"></span></div>	
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->    
+
+<script>
+    let currentSlide = 0;	
+    let slides = document.querySelectorAll('#cta-promotions .cta');
+    let slideInterval = setInterval(nextSlide,7000); // 7 seconds
+
+    function nextSlide() {
+        slides[currentSlide].className = 'cta';
+        currentSlide = (currentSlide+1)%slides.length;
+        slides[currentSlide].className = 'cta cta-visible';
+    }		
+
+    
+    let travel_deals = [{
+      image: 'assets/images/travel_deals_1.jpg',
+      url: 'https://www.gadventures.com/trips/easter-island-independent-adventure/TSCRNN/?aw_ag_id=111030028497&aw_kw_id=dsa-991956854306&aw_ad_id=479462452319&aw_nw=g&phonecode=PPC_SEM_NonBrand&gclid=CjwKCAiAp4KCBhB6EiwAxRxbpAcq2H29crnvXP8PwP1pffw7HT9zE8jCfcMr0mzk-U45cusSjhZIuRoCkfIQAvD_BwE',
+      title: 'Easter Island',
+      description: 'Rapa Nui, the indigenous name of Easter Island, bears witness to a unique cultural phenomenon. Explore one of the world\'s greatest mysteries.'
+    }, {
+      image: 'assets/images/travel_deals_2.jpeg',
+      url: 'https://www.macsadventure.com/us/tour-1700/everest-base-camp-in-style/?gclid=CjwKCAiAp4KCBhB6EiwAxRxbpMdz_-OBUQeKWFdRuBB9ZTpmDCO4wDr2jkeUQmFcRCvk50mNXXt9IxoCwtUQAvD_BwE',
+      title: 'Everest',
+      description: 'Mount Everest is still the ultimate mountaineering adventure. To stand at the pinnacle of the Earth is one of life\'s most rewarding experiences.'
+    }, {
+      image: 'assets/images/travel_deals_3.jpg',
+      url: 'https://www.hurtigruten.com/destinations/antarctica/inspiration/?gclid=CjwKCAiAp4KCBhB6EiwAxRxbpDg6h113qW3Kqm2K3fimlJ2S4A5J7faHlOKo40kpz-2vIHQ09wFemRoCTTgQAvD_BwE&gclsrc=aw.ds',
+      title: 'Antartica',
+      description: 'Magnificent glaciers, staggeringly beautiful icebergs, epic mountains and an abundance of wildlife all contribute to the allure of Antarctica.'
+    }, {
+      image: 'assets/images/travel_deals_4.jpg',
+      url: 'https://www.tahiti.com/island/bora-bora',
+      title: 'Bora Bora',
+      description: 'Undoubtedly the most celebrated island in the South Pacific, Bora Bora is French Polynesia\'s leading lady. Her beauty is unrivaled and her fame, unwavering.'
+    }
+    
+    ];	
+    let TravelDeals = document.getElementById('TravelDeals');
+    let deals = "<h2 class='deals-heading'>Hot Deals</h2><span class='deals-sub-heading'>Limited time offers</span>";		
+
+    let list = "";
+
+    function openWindow(x){
+        var win = window.open(x, '1366002941508',  'width=500,height=400');
+        setTimeout(function(){
+            win.close()
+        }, 7000); // Closes after 7 seconds
+        return false;
+    }		
+    travel_deals.forEach(travel_deals => {
+        
+      deals += "<div id="+ travel_deals.title +" class=\"column-4\"><a onclick='openWindow(\""+travel_deals.url+"\")' class=\"image-container\"><img src='" + travel_deals.image + "'><span class='heading'>" + travel_deals.title + "</span></a>";
+      deals += "<p class=\"description\">" + travel_deals.description + "</p></div>";
+    });		
+
+    TravelDeals.innerHTML += deals;
+</script>
+</html>

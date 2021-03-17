@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<body id="heroSection" class="<% if(locals.login){ if(role == 'admin'){ %>logged-in<% } } %>">
+    <%- include('../partials/admin_bar.ejs') %>   
+    <%- include('../partials/header.ejs') %>
+    <section class="travel-header">
+        <span class="bg-opacity"></span>
+        <img src="<%= destination.coverImagePath %>">
+        <div style="position: absolute; bottom: 0; left: 0; padding-bottom: 65px; ">
+            <h1><%= destination.title %> 
+                <% if(locals.login){ %>
+                    <% if(role == 'admin'){ %>
+                    <a class="edit-post" href="edit/<%= destination.id %>">         
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-edit fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>     
+                    <% } %>
+                <% } %> 
+            </h1>
+        </div>  
+    </section>    
+    <section class="travel-body">
+        <div style="    box-shadow: 5px 5px 2px #eee; border: 1px solid #EEE; width: 66.6%;
+        float: left;
+        background: #FFF;
+        border-radius: 10px;
+        margin-top: -40px;
+        z-index: 10;
+        position: relative;
+        padding: 30px; font-size: 18px;">
+        <%- destination.sanitizedHtml %>
+    </div>
+
+    <div style="width: 33.3%; padding: 20px; font-family: lato; float:left">
+        <div style="float: left; width: 100%; background: #ffe000; padding: 25px; border-radius: 10px; box-shadow: 5px 5px 2px #eee; border: 1px solid #EEE; ">
+            <h2 style="    text-align: center;
+            margin-top: 0;
+            padding-top: 0;
+            font-size: 40px;">Packages</h2>
+            Package #1
+            Package #2
+        </div>
+    </div>
+    </section>
+	<!-- START FOOTER -->
+	<div class="rgb-line"><span class="l1"></span><span class="l2"></span><span class="l3"></span><span class="l4"></span><span class="l5"></span><span class="l6"></span></div>	
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->    
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/head.ejs') %>
+</head>
+<style type="text/css">
+body { padding: 0; }
+</style>
+<body id="backend" class="logged-in">
+    <%- include('../partials/admin_bar.ejs') %>
+	<%- include('../partials/backend-header.ejs') %>
+    <section class="backend-content">
+        <div class="dashboard-heading">
+            <h1><i class="fa fa-user" aria-hidden="true"></i> My profile</h1>
+        </div>
+        <form action="/dashboard/profile?_method=PUT" method="POST">
+        <section class="form-style-1">
+                <div class="one-half">
+                    <div class="field-container">
+                        <label class="name field-heading" for="name">Name</label>
+                    </div>    
+                    <input required name="name" id="name" value="<%= currentUser.name %>"></textarea>
+
+                    <div class="field-container">
+                        <label class="email field-heading" for="email">Name</label>
+                    </div>    
+                    <input required name="email" id="email" value="<%= currentUser.email %>"></textarea>            
+            
+                </div>
+                <div class="one-half">
+
+                    <img style="width: 200px; height: 190px; border-radius: 50%; "src="<%= currentUser.profilePicturePath %>">
+        
+                    <div class="field-container">
+                        <label class="article-cover field-heading" for="title">Profile Picture</label>
+                    </div>       
+                    
+                    <input type="file" name="profilePicture" class="filepond">
+
+                    <div class="article-button-container">
+                        <a class="cancel-button" href="/dashboard">Cancel</a>
+                        <button class="save-button" type="submit">Save</button>
+                    </div>
+                </div>
+
+        </section>
+        </form>
+    </section>
+
+
+    
+
+	<!-- START FOOTER -->
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->    
+</body>
+</html>

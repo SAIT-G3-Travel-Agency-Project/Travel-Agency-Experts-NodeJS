@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../../partials/head.ejs') %>
+</head>
+<style type="text/css">
+body { padding: 0; }
+</style>
+<body id="backend" class="logged-in">
+    <%- include('../../partials/admin_bar.ejs') %>
+	<%- include('../../partials/backend-header.ejs') %>
+    <section class="backend-content">
+        <div class="dashboard-heading">
+            <h1><i class="fa fa-user" aria-hidden="true"></i> Edit user</h1>
+            <a href="/dashboard/user-manager" class="dashboard-breadcrumbs">Return to user manager</a>
+        </div>
+
+    
+            <form action="/dashboard/user-manager/edit/<%= users._id %>?_method=PUT" method="POST">
+                <section class="form-style-1">
+                    <div class="one-half">
+                        <div class="field-container">
+                            <label class="name field-heading" for="name">Name</label>
+                        </div>    
+                        <input required name="name" id="name" value="<%= users.name %>"></textarea>
+    
+                        <div class="field-container">
+                            <label class="email field-heading" for="email">Email address</label>
+                        </div>    
+                        <input required name="email" id="email" value="<%= users.email %>"></textarea> 
+
+        
+                    </div>  
+                    <div class="one-half">
+                        
+                        <div class="field-container">
+                            <label class="email field-heading" for="email">User role</label>
+                        </div>                          
+                        <select name="role" id="role"> 
+                            <% for(var i = 0; i < ROLES.length; i++){ %>
+                            <option required <% if(ROLES[i] == users.role) {%> selected <% } %> value="<%= ROLES[i] %>"><%= ROLES[i] %></option>
+                            <% } %>
+                        </select>
+
+                        <div class="article-button-container" style="margin-top: 20px;">
+                            <a class="cancel-button" href="/dashboard/user-manager">Cancel</a>
+                            <button class="save-button" type="submit">Save</button>
+                        </div>
+
+                    </div>
+
+
+                    
+                </section>              
+            </form>
+     
+    </section>
+	<!-- START FOOTER -->
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->    
+</body>
+</html>

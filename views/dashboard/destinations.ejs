@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/head.ejs') %>
+</head>
+<style type="text/css">
+body { padding: 0; }
+</style>
+<body id="backend" class="logged-in">
+    <%- include('../partials/admin_bar.ejs') %>
+	<%- include('../partials/backend-header.ejs') %>
+    <section class="backend-content">
+        <div class="dashboard-heading">
+            <h1><i class="fa fa-plane" aria-hidden="true"></i> Destinations</h1>
+        </div>
+
+        <div class="backend-heading-section">
+            <h2> Your destinations</h2>
+            <span class="heading-description">Create, edit and delete your website's travel destinations.</span>
+            <a class="create-an-article" href="/destinations/new">Create a new destination</a>
+        </div>
+
+        <div class="customize">    
+            <% destinations.forEach(destination => { %>
+                <div class="column-4">
+                        <div class="image-container">
+                            <img height="150" width="100" src="<%= destination.coverImagePath %>">
+                        </div>
+                        <div class="description">
+                            <span class="heading"><%= destination.title %></span>
+                            <span class="created-on">Created on: <%= destination.createdAt.toLocaleDateString() %> </span>
+                        </div>
+                        <a class="edit-post" href="/destinations/edit/<%= destination.id %>">
+                                <i class="fa fa-edit"></i> Edit
+                        </a>
+                        <form style="width: 50%; float:left;" class="delete-post" method="POST" action="/destinations/<%= destination.id %>?_method=DELETE">
+                            <button type="submit">
+                                    <i class="fa fa-remove"></i> Delete                        
+                            </button>
+                        </form>
+                        <a target="_blank" class="read-more" href="/destinations/<%= destination.slug %>">Open in new tab</a>            
+                </div>
+            <% }) %>
+        </div>          
+    
+        
+    </section>
+
+    
+
+	<!-- START FOOTER -->
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->    
+</body>
+</html>

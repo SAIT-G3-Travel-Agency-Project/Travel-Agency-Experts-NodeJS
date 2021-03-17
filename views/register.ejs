@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head.ejs') %>
+<body>
+	<%- include('partials/header.ejs') %>
+
+<section class="form-style-1">
+    <div class="column-2">
+        <h1><i class="fa fa-user-circle" aria-hidden="true"></i> Register </h1>
+        <%- include("partials/register_login_messages.ejs") %>
+        <a class="cta-alert" href="/login">Already Registered? Click here to login</a>
+
+        <form action="/register" method="POST" class="user-auth-form">
+            <div class="field-container">
+                <label class="field-heading" for="name">Name<i class="fa fa-user" aria-hidden="true"></i></label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="field-container">
+                <label class="field-heading" for="email">Email<i  class="fa fa-envelope" aria-hidden="true"></i></label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="field-container">
+                <label class="field-heading" for="password">Password<i class="fa fa-lock" aria-hidden="true"></i></label>
+                <input type="password" id="password" name="password" required>
+            </div> 
+            <div class="field-container">
+                <label class="field-heading" for="password2">Password</label>
+                <input type="password" id="password2" name="password2" required>
+            </div>     
+            <button class="submit" type="submit">Register</button>   
+        </form>
+    </div>
+    <div class="column-2 register-image"></div>
+</section>
+
+
+	<!-- START FOOTER -->
+	<div class="rgb-line"><span class="l1"></span><span class="l2"></span><span class="l3"></span><span class="l4"></span><span class="l5"></span><span class="l6"></span></div>	
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->  
+</body>
+</html>

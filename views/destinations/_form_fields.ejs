@@ -1,0 +1,40 @@
+<section class="form-style-1">
+    <div class="one-half">
+
+        <div class="field-container">
+            <label class="destination-title field-heading" for="title">Title</label>
+        </div>
+        <input value="<%= destination.title %>" required type="text" name="title" id="title">
+
+        <div class="field-container">
+            <label class="destination-markdown field-heading" for="markdown">Markdown</label>
+        </div>    
+        <textarea required name="markdown" id="markdown"><%= destination.markdown %></textarea>
+
+    </div>
+    <div class="one-half">
+
+        <div class="field-container">
+            <label class="destination-color-selector field-heading" for="colorSelector">Background color</label>
+        </div>    
+        <input style="width: 50px;padding: 0;box-shadow: none;height: 45px;background: none;border: none;" type="color" colorformat="rgba" value="<%= destination.colorSelector %>" name="colorSelector" id="colorSelector" opacity>     
+
+        <div class="field-container">
+            <label class="destination-description field-heading" for="title">Description</label>
+        </div>    
+        <textarea required name="description" id="description"><%= destination.description %></textarea>
+
+        <div class="field-container">
+            <label class="destination-cover field-heading" for="title">Featured image</label>
+        </div>       
+        
+        <input type="file" name="cover" class="filepond">
+
+        <div class="article-button-container">
+            <a class="cancel-button" href="/dashboard">Cancel</a>
+            <button class="save-button" type="submit">Save</button>
+        </div>
+    </div>
+
+</div>
+</section>

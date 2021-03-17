@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head.ejs') %>
+<body>
+	<%- include('partials/header.ejs') %>
+
+<section class="form-style-1" style="padding: 20px 250px; padding-bottom: 75px;">
+        <h1><i class="fa fa-user-circle" aria-hidden="true"></i> Login </h1>
+        <%- include("partials/register_login_messages.ejs") %>
+        <a href="/register" class="cta-alert">Don't have an account yet? Click here to register</a>
+        <form action="/login" method="POST" class="user-auth-form">            <form action="/login" method="POST">
+                <div class="field-container">
+                    <label class="field-heading" for="email">Email<i  class="fa fa-envelope" aria-hidden="true"></i></label>
+                    <input type="text" id="email" placeholder="JohnDoe@example.com" name="email" required>
+                </div>
+                <div class="field-container">
+                    <label class="field-heading" for="password">Password<i  class="fa fa-lock" aria-hidden="true"></i></label>
+                    <input type="password" placeholder="********" id="password" name="password" required>
+                </div> 
+                <button class="submit" type="submit">Login</button>   
+            </form>        
+</section>
+
+
+	<!-- START FOOTER -->
+	<div class="rgb-line"><span class="l1"></span><span class="l2"></span><span class="l3"></span><span class="l4"></span><span class="l5"></span><span class="l6"></span></div>	
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->  
+</body>
+</html>

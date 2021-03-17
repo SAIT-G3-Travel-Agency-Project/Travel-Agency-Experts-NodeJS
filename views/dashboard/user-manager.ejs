@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/head.ejs') %>
+</head>
+<style type="text/css">
+body { padding: 0; }
+</style>
+<body id="backend" class="logged-in">
+    <%- include('../partials/admin_bar.ejs') %>
+	<%- include('../partials/backend-header.ejs') %>
+    <section class="backend-content">
+        <div class="dashboard-heading">
+            <h1><i class="fa fa-group" aria-hidden="true"></i> User manager</h1>
+        </div> 
+
+        <div class="backend-heading-section">
+            <h2><i class="fa fa-wrench" aria-hidden="true"></i> Configure all users</h2>
+            <span class="heading-description">Edit all users on the database.</span>
+        </div>   
+
+        <style type="text/css">
+        #manage-users { float: left; width: 100%; }
+        #manage-users .user-row { 
+            float: left;
+            width: 100%;
+            background: #FAFAFA;
+            padding: 20px 40px;
+            border: 1px solid #EEE;
+            border-top: 0;            
+        }
+        #manage-users .user-row:first-child {
+            border: 1px solid #EEE;
+        }
+        #manage-users .user-row .first_name {
+            width: 20%; 
+            float: left;
+        }    
+        #manage-users .user-row .email_address {
+            width: 30%; 
+            float: left;
+        }   
+        #manage-users .user-row .user_role {
+            width: 20%; 
+            float: left;
+            text-transform: capitalize;
+        }
+        #manage-users .user-row .manage_account {
+            width: 30%; 
+            float: left;
+        }        
+        #manage-users div.user-row.header { 
+            background: #333;
+            color: #FFF;
+        }
+        #manage-users div.user-row span.manage_account a.edit {
+            background: #a5a;
+            padding: 5px 10px;
+            color: #FFF;
+            text-decoration: none;
+            border-radius: 10px;
+         }
+        </style>
+
+        <div id="manage-users">
+            <div class="user-row header">
+                <span class="first_name header">First name</span>
+                <span class="email_address header">Email Address</span>
+                <span class="user_role header">Roles</span>
+                <span class="manage_account header">Manage account</span>
+            </div>
+        <% users.forEach(user => { %>
+            <div class="user-row">
+                <span class="first_name"><%= user.name %></span>
+                <span class="email_address"><%= user.email %></span>
+                <span class="user_role"><%= user.role %></span>
+                <span class="manage_account">
+                    <a class="edit" href="/dashboard/user-manager/edit/<%= user.id %>">Edit</a>
+                </span>
+            </div>
+        <% }) %>
+        </div>
+
+
+        
+    </section>
+
+    
+
+	<!-- START FOOTER -->
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->    
+</body>
+</html>

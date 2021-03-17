@@ -1,0 +1,12 @@
+<% if(locals.login){ %>
+    <% if(role == 'admin'){ %>
+    <div class="admin-bar">
+        <ul>
+            <li><a href="/dashboard"><i class="fa fa-cogs" aria-hidden="true"></i> Dashboard</a></li>
+            <li><a href="/destinations/new"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New destination</a></li>
+            <li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+            <li class="profile-link">Hello <%= first_name %></li>
+        </ul>
+    </div>
+    <% } %>
+<% } %>

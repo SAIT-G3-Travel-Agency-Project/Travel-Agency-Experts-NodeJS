@@ -1,0 +1,15 @@
+<div class="bg-opacity"></div>
+<!-- START HEADER -->
+<header class="main-header">
+    <a href=".."><img class="logo" src="../../assets/images/travel_agency.png"/></a>
+    <nav>
+        <a href="../../../contact"><i class="fas fa-comments"></i> Contact </a>
+        <% if(locals.login){ %>
+            <a href="./logout"><i class="fa fa-sign-out"></i> Logout</a>
+        <% } else { %>
+        <a href="./register"><i class="fas fa-plane-departure"></i> Register</a>
+        <a href="./login"><i class="fas fa-envelope"></i> Login</a>
+        <% } %>
+    </nav>
+</header>
+<!-- END HEADER -->

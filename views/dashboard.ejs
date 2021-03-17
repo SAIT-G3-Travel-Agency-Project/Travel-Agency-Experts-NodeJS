@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head.ejs') %>
+<style type="text/css">
+body { padding: 0; }
+</style>
+<body id="backend" class="logged-in">
+    <%- include('partials/admin_bar.ejs') %>
+	<%- include('partials/backend-header.ejs') %>
+    <section class="backend-content">
+        <div class="dashboard-heading">
+            <h1><i class="fa fa-cogs" aria-hidden="true"></i> Dashboard</h1>
+        </div>
+
+        <div class="backend-heading-section" style="margin-bottom: 30px;">
+            <div style="float: left; padding-right: 20px;">
+                <img style="width: 100px; height: 100px; border-radius: 50%; "src="<%= currentUser.profilePicturePath %>">
+            </div>
+
+            <div style="float: left;">
+                <h2>Hello <%= name %>,</h2>
+                <span class="heading-description">Start building your website now.</span>
+            </div>
+        </div>   
+
+        <div class="backend-settings">
+
+            <div class="one-third">
+                <a href="/dashboard/destinations" class="website-settings">
+                    <i class="fa fa-plane"></i>
+                    <h2>Destinations</h2>
+                </a>
+            </div>
+
+            <div class="one-third">
+                <a  href="/dashboard/user-manager" class="website-settings">
+                    <i class="fa fa-group"></i>
+                    <h2>User manager</h2>
+                </a>
+            </div>
+
+            <div class="one-third">
+                <a href="/dashboard/profile" class="website-settings">
+                    <i class="fa fa-user"></i>
+                    <h2>My profile</h2>
+                </a>
+            </div>
+
+            <div class="one-third">
+                <a href="../" class="website-settings">
+                    <i class="fa fa-desktop"></i>
+                    <h2>View website</h2>
+                </a>
+            </div>            
+
+        </div>
+
+        
+    </section>
+
+    
+
+	<!-- START FOOTER -->
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->    
+</body>
+</html>
