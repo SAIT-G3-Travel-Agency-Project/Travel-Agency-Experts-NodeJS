@@ -7,6 +7,17 @@
 	<section class="contact">
         <h1 class="page-heading">
          Contact <b class="wt-t">T</b><b class="wt-r">r</b><b class="wt-a">a</b><b class="wt-v">v</b><b class="wt-e">e</b><b class="wt-l">l</b> Experts</h1> 
+        
+         <% users.forEach(user => { %>
+               <% if (user.role == "agent"){ %>
+               <div class="user-row">
+               <span class="first_name"><%= user.name %></span>
+               <span class="email_address"><%= user.email %></span>
+               <span class="user_role"><%= user.role %></span>
+               </div>
+               <% } %>
+          <% }) %>        
+        
          <dl>
              <div class="column-3">
                   <h2> <dt>&star;Dallas R.</dt> </h2>
