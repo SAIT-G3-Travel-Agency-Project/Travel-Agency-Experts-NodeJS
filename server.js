@@ -75,7 +75,14 @@ app.use(methodOverride('_method'))
 app.use('/', require('./routes/users'));
 
 app.get('/contact', async (req, res) => {
-    res.render('../views/contact')
+    const users = await User.find().sort({
+        createdAt: 'desc'
+    });    
+    res.render('../views/contact', {users: users})
+});
+
+app.get('/packages', async (req, res) => {
+    res.render('../views/packages')
 });
 
 app.get('/404', async (req, res) => {
@@ -92,5 +99,4 @@ app.get("/", async (req, res) => {
 
 app.use('/destinations', destinationRouter);
 
-const port = 3000;
-app.listen(port, () => console.log(`Listening on port: ${port}`));
+app.listen(process.env.PORT || 3000)
