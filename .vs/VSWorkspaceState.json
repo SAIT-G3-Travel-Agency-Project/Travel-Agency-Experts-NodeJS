@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\config"
+    "\\config",
+    "\\views",
+    "\\views\\destinations"
   ],
-  "SelectedNode": "\\config\\auth.js",
+  "SelectedNode": "\\views\\destinations\\index.ejs",
   "PreviewInSolutionExplorer": false
 }
