@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head.ejs') %>
+<body class="<% if(locals.login){ if(role == 'admin'){ %>logged-in<% } } %>">
+    <%- include('partials/admin_bar.ejs') %>
+   	<%- include('partials/header.ejs') %>
+     
+     <section class="cont1">
+          <div class="cont2">
+                 <div class="cont3"><img class="pic"  src="../../assets/images/calgary.jpg">
+              </div>
+              <a href="/agents/calgary" style="text-decoration:none;"><span>  Calgary Office    </span></a>
+              <p class="caption">Strategically located in the heart of downtown Calgary. We offers Corporate, Business and Leisure travel.  </p>
+            </div>
+          <div class="cont2">
+                 <div class="cont3"><img class="pic"  src="../../assets/images/okotoks.jpg">
+              </div>
+              <a href="/agents/okotoks" style="text-decoration:none;" ><span>  Okotoks Office   </span></a>
+              <p class="caption">Serving all our south Calgary, Okotoks, High River and surroundings clients.  </p>
+            </div>
+            <div class="cont2">
+                 <div class="cont3"><img  class="pic" src="../../assets/images/soon.png">
+              </div>
+              <a href="/agents/new-office" style="text-decoration:none;" ><span> New  Office </span></a>
+              <p class="caption">Thinking about the future and the comfort of our clients our new office will be ready soon.  </p>
+            </div>
+            
+      </section>
+
+      <%- include('partials/footer.ejs') %>
+
+</html>
