@@ -1,43 +1,151 @@
 <!DOCTYPE html>
+<!-- Style sheet for the Packages Page-->
+<style>
+      .btn {
+          color: white;
+          background-color: cornflowerblue;
+          border-radius: 50%;
+          border: 1px solid white;
+          padding: 10px;
+          font-size: 1.25rem;
+      }
+      /*select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+    }*/
+      select {
+          border: 1px solid #777;
+          border-radius: 0.25em;
+          padding: 0.25em 0.5em;
+          font-size: 1.25rem;
+          cursor: pointer;
+          line-height: 1.1;
+          background-color: #fff;
+          background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+      }
+
+      input[type=text] {
+          font-size: 1.25rem;
+      }
+
+      .blocked {
+          background-color: transparent;
+          border: none;
+          padding: 10px;
+          margin: 0;
+          font-family: inherit;
+          font-size: inherit;
+          cursor: inherit;
+          line-height: inherit;
+          outline: none;
+      }
+
+      .personinput {
+          padding: 10px;
+          border-radius: 10px;
+          border: 0;
+          box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+          width: 2em;
+          font-size: 1.25em;
+      }
+
+      button {
+          padding: 10px;
+          border: none;
+          background-color: #3F51B5;
+          color: #fff;
+          font-weight: 600;
+          border-radius: 5px;
+          width: 100%;
+      }
+
+      form {
+          font-size: 1.25rem;
+          border: 1px solid #777;
+          border-radius: 0.25em;
+          padding: 0.25em 0.5em;
+          font-size: 1.25rem;
+          cursor: pointer;
+          line-height: 1.1;
+          background-color: #fff;
+          background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+      }
+</style>
+<!-- Script for the Packages Page-->
+<script>
+    /* Tour cost table */
+    var cost = {
+        'Bali': { 'adult': 6000, 'kid': 4000 },
+        'California': { 'adult': 1000, 'kid': 500 },
+        'Fiji': { 'adult': 4000, 'kid': 2000 },
+        'Dubai': { 'adult': 3000, 'kid': 1500 }
+    };
+    function calculate() {
+        /* Validate the inputs first */
+        var dest = document.getElementById('destination').value;
+        var numadults = document.getElementById('adults').value;
+        if (isNaN(numadults) || numadults < 0 || numadults > 9) {
+            document.getElementById('adults').value = 0;
+            numadults = 0;
+        }
+        var numkids = document.getElementById('children').value;
+        if (isNaN(numkids) || numkids < 0 || numkids > 9) {
+            document.getElementById('children').value = 0;
+            numkids = 0;
+        }
+        var price = cost[dest].adult * numadults + cost[dest].kid * numkids;
+        document.getElementById('price').value = price;
+    };
+</script>
 <html lang="en">
 <%- include('partials/head.ejs') %>
 <body class="<% if(locals.login){ if(role == 'admin'){ %>logged-in<% } } %>">
     <%- include('partials/admin_bar.ejs') %>
 	<%- include('partials/header.ejs') %>
 	<section class="contact">
-        <h1 class="page-heading">
-         Contact <b class="wt-t">T</b><b class="wt-r">r</b><b class="wt-a">a</b><b class="wt-v">v</b><b class="wt-e">e</b><b class="wt-l">l</b> Experts</h1> 
-<form name="guests">
-    <table cellpadding="0" cellspacing="0" border="0" layout="fixed">
-    	<tr>
-	 <select id="destination" name="destination">
-   		 <option value="bali">Bali</option>
- 		 <option value="california">California</option>
-  		 <option value="fiji">Fiji</option>
-   		 <option value="Dubai">Dubai</option>
- 	 </select>
-	</tr>
-        <tr>
-            <td>Adults</td>
-            <td><input type="button" name="minus" value="-" onclick="guests.adults.value = parseInt(guests.adults.value) - 1"></td>
-            <td style="width: 10px;">
-                <input type="text" name="adults" id="adults" value="2" colspan="1">
-            </td>
-            <td><input type="button" name="plus" value="+" onclick="guests.adults.value = parseInt(guests.adults.value) + 1"></td>
-        </tr>
-        <tr>
-            <td>Children</td>
-            <td><input type="button" name="minus" value="-" onclick="guests.children.value = parseInt(guests.children.value) - 1"></td>
-            <td style="width: 10px;">
-                <input type="text" name="children" id="children" value="0" width="30px">
-            </td>
-            <td><input type="button" name="plus" value="+" onclick="guests.children.value = parseInt(guests.children.value) + 1"></td>
-        </tr>
-        <tr><td></td><td colspan="3"><input type="button" name="book" onclick="guests.submit" value="Book Now"</td></tr>
-    </table>
-</form>
-     </section>
-
+        <h1 class="page-heading">Build your package</h1> 
+        <form name="guests">
+            <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td>Destination</td>
+                <td>
+                <select id="destination" name="destination" onChange="calculate();">
+                    <option value="Bali">Bali</option>
+                    <option value="California">California</option>
+                    <option value="Fiji">Fiji</option>
+                    <option value="Dubai">Dubai</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Adults</td>
+                <td><input type="button" class="btn" id="plusminus" value="-" onclick="guests.adults.value = parseInt(guests.adults.value) - 1; calculate();"></td>
+                <td style="width: 1px;">
+                    <input type="text" name="adults" id="adults" class="personinput" value="2" onchange="calculate()">
+                </td>
+                <td><input type="button" class="btn" id="plusminus" value="+" onclick="guests.adults.value = parseInt(guests.adults.value) + 1; calculate();"></td>
+            </tr>
+            <tr>
+                <td>Children</td>
+                <td><input type="button" class="btn" id="plusminus" value="-" onclick="guests.children.value = parseInt(guests.children.value) - 1; calculate();"></td>
+                <td style="width: 1px;">
+                    <input type="text" name="children" id="children" value="0" onchange="calculate()" class="personinput">
+                </td>
+                <td><input type="button" class="btn" id="plusminus" value="+" onclick="guests.children.value = parseInt(guests.children.value) + 1; calculate();"></td>
+            </tr>
+            <tr><td>Total</td><td><input type="text" class="blocked" id="price" size=8 value=4000 disabled></td></tr>
+            <tr><td><button class="button" name="book" value="Yes">Book Now!</button></td></tr>
+            </table>
+        </form>
+    </section>
 	<!-- START FOOTER -->
 	<div class="rgb-line"><span class="l1"></span><span class="l2"></span><span class="l3"></span><span class="l4"></span><span class="l5"></span><span class="l6"></span></div>	
 	<footer>
