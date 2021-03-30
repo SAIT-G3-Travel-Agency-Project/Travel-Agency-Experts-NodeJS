@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head.ejs') %>
+<body class="<% if(locals.login){ if(role == 'admin'){ %>logged-in<% } } %>">
+    <%- include('partials/admin_bar.ejs') %>
+	<%- include('partials/header.ejs') %>
+	<section class="form-style-1 newsletter">
+          <span class="overlay"></span>
+               <div class="column-12" style="">
+                    <h1><i class="fa fa-user-circle" aria-hidden="true"></i> Newsletter sign-up</h1>
+                    <form action="assets/scripts/bouncer.php" method="GET"> 
+                    <div class="column-2">
+                    
+                         <!-- FIRST NAME -->			
+                         <div class="field-container">
+                              <h3 class="field-heading">First name<i class="fa fa-user" aria-hidden="true"></i></h3>
+                         </div>
+                         <input type="text" name="firstname"> <br> 
+                         
+                         <!-- LAST NAME -->
+                         <div class="field-container">
+                              <h3 class="field-heading">Last name</h3>
+                         </div>
+                         <input type="text" name="lastname"> 	
+     
+                         <!-- PHONE NUMBER -->
+                         <div class="field-container">
+                              <h3 class="field-heading">Phone number<i class="fa fa-phone" aria-hidden="true"></i></h3>
+                         </div>
+                         <input type="text" name="phonenumber">				
+                    </div>
+                    <div class="column-2">			
+                         
+                         <!-- ADDRESS -->				
+                         <div class="field-container">
+                              <h3 class="field-heading"><i class="fa fa-map-marker" aria-hidden="true"></i>Address</h3>
+                         </div>
+                         <input type="text" name="address"> 
+                         
+                         <!-- CITY -->				
+                         <div class="field-container">
+                              <h3 class="field-heading"></i>City</h3>
+                         </div>
+                         <input type="text" name="city"> 
+     
+                         <!-- POSTAL CODE -->
+                         <div class="field-container">
+                              <h3 class="field-heading">Postal Code</h3>
+                         </div>
+                         <input type="text" name="postalcode">				
+                    </div>
+                    <!-- SEND COLUMNS -->
+                    <div class="column-2 send-columns">	
+                         <input type="hidden" name="form_submitted" value="1" />
+                         <input class="reset" type="reset"  onClick="return confirm('Are you sure want to reset the form?')">
+                    </div>
+                    <div class="column-2 send-columns">	
+                         <input class="submit" type="submit" onClick="return confirm('Are you sure want to submit the form?')" value="Submit">
+                    </div>
+                    </form>
+               </div>
+          </section>
+
+     <%- include('partials/footer.ejs') %>  
+
+</html>
