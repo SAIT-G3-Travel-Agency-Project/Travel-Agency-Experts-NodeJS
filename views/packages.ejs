@@ -100,38 +100,28 @@
 	<%- include('partials/header.ejs') %>
 	<section class="contact">
         <h1 class="page-heading">Build your package</h1> 
-        <form name="guests">
-            <table cellpadding="0" cellspacing="0">
-            <tr>
-                <td>Destination
-                <select id="destination" name="destination" onChange="calculate();">
-                    <option value="Bali">Bali</option>
-                    <option value="California">California</option>
-                    <option value="Fiji">Fiji</option>
-                    <option value="Dubai">Dubai</option>
-                </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Adults</td>
-                <td><input type="button" class="btn" id="plusminus" value="-" onclick="guests.adults.value = parseInt(guests.adults.value) - 1; calculate();"></td>
-                <td style="width: 1px;">
-                    <input type="text" name="adults" id="adults" class="personinput" value="2" onchange="calculate()">
-                </td>
-                <td><input type="button" class="btn" id="plusminus" value="+" onclick="guests.adults.value = parseInt(guests.adults.value) + 1; calculate();"></td>
-            </tr>
-            <tr>
-                <td>Children</td>
-                <td><input type="button" class="btn" id="plusminus" value="-" onclick="guests.children.value = parseInt(guests.children.value) - 1; calculate();"></td>
-                <td style="width: 1px;">
-                    <input type="text" name="children" id="children" value="0" onchange="calculate()" class="personinput">
-                </td>
-                <td><input type="button" class="btn" id="plusminus" value="+" onclick="guests.children.value = parseInt(guests.children.value) + 1; calculate();"></td>
-            </tr>
-            <tr><td>Total</td><td><input type="text" class="blocked" id="price" size=8 value=4000 disabled></td></tr>
-            <tr><td><button class="button" name="book" value="Yes">Book Now!</button></td></tr>
-            </table>
-        </form>
+	<form name="guests">
+	    <div class="column-12">Destination
+		<select id="destination" name="destination" onChange="calculate();">
+		<option value="Bali">Bali</option>
+		<option value="California">California</option>
+		<option value="Fiji">Fiji</option>
+		<option value="Dubai">Dubai</option>
+		</select>
+		</div>
+		<div class="column-12">&nbsp;&nbsp;Adults&nbsp;
+		<input type="button" class="btn" id="plusminus" value="-" onclick="guests.adults.value = parseInt(guests.adults.value) - 1; calculate();">
+		<input type="text" name="adults" id="adults" class="personinput" value="2" onchange="calculate()">
+		<input type="button" class="btn" id="plusminus" value="+" onclick="guests.adults.value = parseInt(guests.adults.value) + 1; calculate();">
+	    </div>
+	    <div class="column-12">Children
+		<input type="button" class="btn" id="plusminus" value="-" onclick="guests.children.value = parseInt(guests.children.value) - 1; calculate();">
+		<input type="text" name="children" id="children" value="0" onchange="calculate()" class="personinput">
+		<input type="button" class="btn" id="plusminus" value="+" onclick="guests.children.value = parseInt(guests.children.value) + 1; calculate();">
+	    </div>
+	    <div class="column-12">Total<input type="text" class="blocked" id="price" size=8 value=4000 disabled></div>
+	    <div class="column-12"></div><button class="button" name="book">Book Now!</button></div>
+	</form>
     </section>
 	<!-- START FOOTER -->
 	<div class="rgb-line"><span class="l1"></span><span class="l2"></span><span class="l3"></span><span class="l4"></span><span class="l5"></span><span class="l6"></span></div>	
