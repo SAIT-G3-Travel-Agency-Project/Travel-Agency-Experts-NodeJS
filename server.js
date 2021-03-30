@@ -6,6 +6,8 @@ const User = require('./models/users')
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const Agency = require('./models/agencies')
+
 
 // Passport config
 require('./config/passport')(passport);
@@ -74,15 +76,19 @@ app.use(methodOverride('_method'))
 
 app.use('/', require('./routes/users'));
 
-app.get('/contact', async (req, res) => {
-    const users = await User.find().sort({
+app.get('/agents', async (req, res) => {
+    const agency = await Agency.find().sort({
         createdAt: 'desc'
     });    
-    res.render('../views/contact', {users: users})
+    res.render('../views/agents', {agency: agency})
 });
 
 app.get('/packages', async (req, res) => {
     res.render('../views/packages')
+});
+
+app.get('/newsletter', async (req, res) => {
+    res.render('../views/newsletter')
 });
 
 app.get('/404', async (req, res) => {
@@ -95,6 +101,14 @@ app.get("/", async (req, res) => {
         createdAt: 'desc'
     });
     res.render('destinations/index', { destinations: destinations, test: 'test' });
+}); 
+
+// Register pages
+app.get("/destinations", async (req, res) => {
+    const destinations = await Destination.find().sort({
+        createdAt: 'desc'
+    });
+    res.render('destinations', { destinations: destinations });
 }); 
 
 app.use('/destinations', destinationRouter);
