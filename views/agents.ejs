@@ -1,32 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('partials/head.ejs') %>
-<body class="<% if(locals.login){ if(role == 'admin'){ %>logged-in<% } } %>">
-    <%- include('partials/admin_bar.ejs') %>
-   	<%- include('partials/header.ejs') %>
-     
-     <section class="cont1">
-          <div class="cont2">
-                 <div class="cont3"><img class="pic"  src="../../assets/images/calgary.jpg">
-              </div>
-              <a href="/agents/calgary" style="text-decoration:none;"><span>  Calgary Office    </span></a>
-              <p class="caption">Strategically located in the heart of downtown Calgary. We offers Corporate, Business and Leisure travel.  </p>
-            </div>
-          <div class="cont2">
-                 <div class="cont3"><img class="pic"  src="../../assets/images/okotoks.jpg">
-              </div>
-              <a href="/agents/okotoks" style="text-decoration:none;" ><span>  Okotoks Office   </span></a>
-              <p class="caption">Serving all our south Calgary, Okotoks, High River and surroundings clients.  </p>
-            </div>
-            <div class="cont2">
-                 <div class="cont3"><img  class="pic" src="../../assets/images/soon.png">
-              </div>
-              <a href="/agents/new-office" style="text-decoration:none;" ><span> New  Office </span></a>
-              <p class="caption">Thinking about the future and the comfort of our clients our new office will be ready soon.  </p>
-            </div>
-            
-      </section>
+<head>
+<%- include('../partials/head.ejs') %>
+</head>
+<style type="text/css">
+body { padding: 0; }
+</style>
+<body id="backend" class="logged-in">
+    <%- include('../partials/admin_bar.ejs') %>
+	<%- include('../partials/backend-header.ejs') %>
+    <section class="backend-content">
+        <div class="dashboard-heading">
+            <h1><i class="fa fa-house-user" aria-hidden="true"></i> Agents</h1>
+        </div>
 
-      <%- include('partials/footer.ejs') %>
+        <div class="backend-heading-section">
+            <h2> Agencies</h2>
+            <span class="heading-description">Create, edit and delete your agencies.</span>
+            <a class="create-an-article" href="/dashboard/agents/new">Create a new agency</a>
+        </div>
 
+        <div class="customize">    
+            <% agency.forEach(agent => { %>
+                <div class="column-4">
+                        <div class="image-container">
+                            <img height="150" width="100" src="<%= agent.coverImagePath %>">
+                        </div>
+                        <div class="description">
+                            <span class="heading"><%= agent.title %></span>
+                            <span class="created-on">Created on: <%= agent.createdAt.toLocaleDateString() %> </span>
+                        </div>
+                        <a class="edit-post" href="/dashboard/agents/edit/<%= agent.id %>">
+                                <i class="fa fa-edit"></i> Edit
+                        </a>
+                        <form style="width: 50%; float:left;" class="delete-post" method="POST" action="/destinations/<%= agent.id %>?_method=DELETE">
+                            <button type="submit">
+                                    <i class="fa fa-remove"></i> Delete                        
+                            </button>
+                        </form>
+                        <a target="_blank" class="read-more" href="/agents/<%= agent.slug %>">Open in new tab</a>            
+                </div>
+            <% }) %>
+        </div>          
+    
+        
+    </section>
+
+    
+
+	<!-- START FOOTER -->
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->    
+</body>
 </html>
