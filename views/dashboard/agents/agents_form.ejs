@@ -1,0 +1,76 @@
+<section class="form-style-1">
+    <div class="one-half">
+
+        <div class="field-container">
+            <label class="destination-title field-heading" for="title"><i class="fas fa-info-circle" aria-hidden="true"></i> Title</label>
+        </div>
+        <input value="<%= agency.title %>" required type="text" name="title" id="title">
+
+        <div class="field-container">
+            <label class="destination-markdown field-heading" for="markdown"><i class="fa fa-html5" aria-hidden="true"></i> Markdown</label>
+        </div>    
+        <textarea required name="markdown" id="markdown"><%= agency.markdown %></textarea>
+        
+    </div>
+    <div class="one-half">
+
+        <div class="field-container">
+            <label class="destination-markdown field-heading" for="officeAgents"><i class="fas fa-house-user" aria-hidden="true"></i> Which agents work at this location?</label>
+        </div>            
+        <div class="agent-scroll-box">
+        <% users.forEach(user => { %>
+            <% if (user.role == "agent"){ %>
+            <div class="agent-container">
+                <div class="info-box">
+                    <% if(user.profilePicture) { %>
+                    <img class="avatar" src="<%= user.profilePicturePath %>"/>
+                    <% } else { %>
+                    <img class="avatar" src="https://image.flaticon.com/icons/png/128/149/149071.png"/>
+                    <% } %>
+                    <span class="detailed-info"> <%= user.name %> <br> <%= user.email %></span>                 
+                    <div style="width: 100%; float:left; position: relative;">
+                    <a class="fake-check <% for (var i = 0; i <= agency.officeAgents.length; i++ ) { %><% if (agency.officeAgents[i] == user._id ){ %>checked<% } %><% } %>" data-val="<%= user._id %>">
+                        <input class="on-off-btn" style="margin-bottom: 10px; float: left;" id='foodObject' type="text" name="foodObject" value="<% for (var i = 0; i <= agency.officeAgents.length; i++ ) { %><% if (agency.officeAgents[i] == user._id ){ %><%= user._id %><% } %><% } %>" readonly>      
+                    </a>
+                 </div>
+                </div>
+            </div>
+            <% } %>
+       <% }) %>   
+        </div>
+
+        <div class="field-container">
+            <label class="destination-title field-heading" for="officeAddress"><i class="fa fa-map" aria-hidden="true"></i> Office Address</label>
+        </div>
+        <input placeholder="100 Main Street" value="<%= agency.officeAddress %>" type="text" name="officeAddress" id="officeAddress">
+        
+        <div class="field-container">
+            <label class="destination-title field-heading" for="officePhoneNumber"><i class="fa fa-phone" aria-hidden="true"></i> Phone Number</label>
+        </div>
+        <input placeholder="***-***-****" value="<%= agency.officePhoneNumber %>" type="text" name="officePhoneNumber" id="officePhoneNumber">        
+
+        <div class="field-container">
+            <label class="destination-title field-heading" for="officeEmailAddress"><i class="fa fa-envelope" aria-hidden="true"></i> Email Address</label>
+        </div>
+        <input placeholder="MainOffice@example.com" value="<%= agency.officeEmailAddress %>" type="text" name="officeEmailAddress" id="officeEmailAddress">        
+
+
+        <div class="field-container">
+            <label class="destination-description field-heading" for="title">Description</label>
+        </div>    
+        <textarea required name="description" id="description"><%= agency.description %></textarea>
+
+        <div class="field-container">
+            <label class="destination-cover field-heading" for="title"><i class="fa fa-image" aria-hidden="true"></i> Featured image</label>
+        </div>       
+        
+        <input type="file" name="cover" class="filepond">
+
+        <div class="article-button-container">
+            <a class="cancel-button" href="/dashboard">Cancel</a>
+            <button class="save-button" type="submit">Save</button>
+        </div>
+    </div>
+
+</div>
+</section>

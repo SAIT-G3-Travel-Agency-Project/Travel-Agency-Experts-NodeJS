@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../../partials/head.ejs') %>
+<body class="<% if(locals.login){ if(role == 'admin'){ %>logged-in<% } } %>">
+    <%- include('../../partials/admin_bar.ejs') %>   
+    <%- include('../../partials/header.ejs') %>
+	<div class="breadcrumbs">
+		<div class="bread-row">
+			<ul>
+				<li class="fas"><a href="/">Home</a></li>
+				<li class="fas"><a href="/agents">Agents</a></li>
+				<li><a><%= agency.title %></a></li>
+			</ul>
+		</div>
+	</div>
+    <section class="cont1">
+        <div class="cont2">
+			<div class="cont3"><img class="pic"  src="<%= agency.coverImagePath %>">
+            </div>
+            <a style="text-decoration:none;"><span><%= agency.title %></span></a>
+            <p class="caption"><%= agency.description %></p>
+		</div>
+        <div class="cont2">
+			<div class="cont3">
+            </div>
+			<% if(agency.officeAddress){ %><h3><dt><i class="fa fa-map" aria-hidden="true"></i> Address: <%= agency.officeAddress %></dt><% } %>
+            <% if(agency.officePhoneNumber){ %><h3><dt><i class="fa fa-phone" aria-hidden="true"></i> Phone: <%= agency.officePhoneNumber %></dt> </h2><% } %>
+			<% if(agency.officeEmailAddress){ %><h3><p><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:<%= agency.officeEmailAddress %>"><%= agency.officeEmailAddress %></a></p></h3><% } %>
+		</div>
+		<% if(agency.officeAddress){ %>
+		<div class="cont2">
+			<div class="cont3"> 
+                <iframe id="gmap_canvas" src="https://maps.google.com/maps?hl=en&amp;q=<%= agency.officeAddress %>&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"  frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ></iframe>
+            </div>
+        </div>
+		<% } %>
+    </section>
+
+	<% if(agency.officeAgents.join('') !== ''){ %>
+	<div class="rgb-line"><span class="l1"></span><span class="l2"></span><span class="l3"></span><span class="l4"></span><span class="l5"></span><span class="l6"></span></div>	
+	<section class="cont4">
+		<h1 style="text-transform: capitalize;">Meet the <%= agency.title %></h1>
+        <% users.forEach(user => { %>
+            <% if (user.role == "agent"){ %>
+				<% for (var i = 0; i <= agency.officeAgents.length; i++ ) { %>
+					<% if (agency.officeAgents[i] == user._id ){ %>
+
+						<div class="cont5">
+							<div class="cont6">
+								<img class="team"  src="<%= user.profilePicturePath %>" >
+								<div class="info">
+									<% if(user.phoneNumber){ %><p class="icaption"><i class="fa fa-phone" aria-hidden="true"></i> Phone: <%= user.phoneNumber %></p><% } %>
+									<p class="icaption"><i class="fa fa-envelope" aria-hidden="true"></i> Email: <a href="mailto:<%= user.email %>"><%= user.email %></a> </p> 
+								</div>
+							</div>
+							<span><%= user.name %></span>
+							<p class="acaption"><%= user.biography %></p>
+						</div>
+
+					<% } %>
+				<% } %>
+			<% } %>
+		<% }) %>   				
+    </section>
+	<% } %>
+
+    <%- include('../../partials/footer.ejs') %>
+
+
+</body>
+</html>

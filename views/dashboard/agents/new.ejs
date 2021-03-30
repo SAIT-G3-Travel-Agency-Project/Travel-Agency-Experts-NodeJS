@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../../partials/head.ejs') %>
+<style type="text/css">
+body { padding: 0; }
+</style>
+<body id="backend" class="logged-in">
+    <%- include('../../partials/admin_bar.ejs') %>
+	<%- include('../../partials/backend-header.ejs') %>
+    <section class="backend-content">
+        <div class="dashboard-heading">
+            <h1><i class="fa fa-cogs" aria-hidden="true"></i> Create a new agency</h1>
+            <a href="/dashboard/agents" class="dashboard-breadcrumbs">Return to travel agents</a>
+        </div>
+        <form action="/dashboard/agents" method="POST">
+            <%- include('agents_form') %>
+        </form>
+    </section>
+	<!-- START FOOTER -->
+	<footer>
+		<span><b>&copy; 2021 Paradise Travel Agency</b></span>
+	</footer>
+	<!-- END FOOTER -->    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $('.fake-check').on('click',function(){
+        if($(this).hasClass('checked')){
+            $(this).removeClass('checked').children('input').val('');
+            $(this).find('.fa-check-circle').addClass('hidden')
+            $(this).find('.fa-times-circle').removeClass('hidden')
+        }else{
+            $(this).addClass('checked').children('input').val($(this).data('val'));
+            $(this).find('.fa-check-circle').removeClass('hidden')
+            $(this).find('.fa-times-circle').addClass('hidden')
+        }
+        });
+</script>
+</html>
